@@ -1,0 +1,14 @@
+---
+#Configure the internal physical interface and bring it online
+
+#I don't have a good tool in ansible to configure interfaces, so for a quick and dirty config we will just copy a config file over
+- name: Configuring Network Interfaces
+  copy:
+    src: interfaces
+    dest: /etc/network/interfaces
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Ensure eth0 online
+  command: "/sbin/ifup eth0"
