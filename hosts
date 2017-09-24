@@ -1,0 +1,10 @@
+#This is the master source of knowledge for the cluster
+
+[controllers]
+controller1.tau.lan ansible_connection=local
+
+[nas]
+nas[1:2].tau.lan
+
+[nodes]
+node[01:20].tau.lan
