@@ -11,6 +11,7 @@
       apt: name={{ item }} state=installed
       with_items:
         - vim
+        - screen
 
   roles:
     - networking/internal
