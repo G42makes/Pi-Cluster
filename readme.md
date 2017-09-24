@@ -19,7 +19,7 @@ First we setup a controller node:
 	- change 'pi' user password: `$ passwd`
 - and install the pre-requisites for using this repo:
 	- `$ sudo apt-get update`
-	- `$ sudo apt-get install -y python-pip git python-dev sshpass`
+	- `$ sudo apt-get install -y python-pip git python-dev libffi-dev libssl-dev sshpass`
 	- `$ sudo pip install ansible`
 	- `$ git clone https://github.com/G42makes/Pi-Cluster.git`
 	- run stuff... TODO: write this and use `ansible-pull` command
