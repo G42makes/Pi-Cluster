@@ -2,18 +2,8 @@
 - hosts: localhost
   become: yes
   connection: local
-  tasks:
-    #Start with some package management. We know we are on debian, so no detection needed
-    - name: Updating Package List
-      apt: update_cache=yes cache_valid_time=3600
-
-    - name: Installing Initial Package List
-      apt: name={{ item }} state=installed
-      with_items:
-        - vim
-        - screen
-
   roles:
+    - setup/node-controller
     - networking/internal
     - networking/gateway
     - services/dhcp
