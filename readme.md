@@ -22,4 +22,7 @@ First we setup a controller node:
 	- `$ sudo apt-get install -y python-pip git python-dev libffi-dev libssl-dev sshpass`
 	- `$ sudo pip install ansible`
 	- `$ git clone https://github.com/G42makes/Pi-Cluster.git`
-	- run stuff... TODO: write this and use `ansible-pull` command
+	- `$ sudo ./local.yml`
+		- this will configure the local system
+		- TODO: replace this command with an 'ansible-pull' command
+		- TODO: add a prompt to configure the whole cluster?
