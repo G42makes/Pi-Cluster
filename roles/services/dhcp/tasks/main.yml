@@ -1,0 +1,24 @@
+---
+#Install and configure DHCP for internal network clients
+
+- name: Install DHCP Server
+  apt: name={{ item }} state=installed
+  with_items:
+   - isc-dhcp-server
+
+- name: Configuring DHCP Server to use eth0
+  lineinfile:
+    path: /etc/default/isc-dhcp-server
+    regexp: '^INTERFACES='
+    line: 'INTERFACES="eth0"'
+  notify: dhcp restart
+
+#TODO: this should be a template based on the inventory file list
+- name: Copying DHCP Server Config
+  copy: 
+    src: dhcpd.conf
+    dest: /etc/dhcp/dhcpd.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: dhcp restart
