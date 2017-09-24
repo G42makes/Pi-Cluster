@@ -1,0 +1,37 @@
+---
+#Enable ip forwarding for the internal network to the outside world
+
+- name: Installing IPTables Persistence Scripts
+  apt: name={{ item }} state=installed
+  with_items:
+   - iptables-persistent
+
+- name: Enabling IPv4 Forwarding
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: 1
+    state: present
+
+- name: Configuring IPTables
+  iptables:
+    table: nat
+    chain: POSTROUTING
+    out_interface: wlan0
+    jump: MASQUERADE
+
+- iptables:
+    chain: FORWARD
+    in_interface: wlan0
+    out_interface: eth0
+    ctstate: RELATED,ESTABLISHED
+    jump: ACCEPT
+
+- iptables:
+    chain: FORWARD
+    in_interface: eth0
+    out_interface: wlan0
+    jump: ACCEPT
+
+- name: Save IPTables persistent
+  command: "/usr/sbin/service netfilter-persistent save"
+

@@ -14,6 +14,6 @@
 
   roles:
     - networking/internal
-    #- networking/gateway
+    - networking/gateway
     #- services/dhcp
 
