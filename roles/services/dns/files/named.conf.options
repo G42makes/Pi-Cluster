@@ -1,0 +1,18 @@
+options {
+	#Cache folder for live data
+	directory "/var/cache/bind";
+
+	auth-nxdomain no;
+
+	#Use Google DNS for unknown domains
+	forwarders {
+        	8.8.8.8;
+        	8.8.4.4;
+        };
+
+	#Only accept requests from the local private network and lcoalhost
+	allow-query {
+        	10.3.14/24;
+        	127.0.0.1;
+        };
+};

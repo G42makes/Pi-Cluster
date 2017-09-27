@@ -1,0 +1,20 @@
+$ORIGIN .
+
+$TTL 907200
+
+tau.lan		IN SOA	ns1.tau.lan. webmaster.tau.lan. (
+                2017092601 ; serial
+                10800      ; refresh (3 hours)
+                3600       ; retry (1 hour)
+                604800     ; expire (1 week)
+                38400      ; minimum (10 hours 40 minutes)
+                )
+	NS	ns1.tau.lan.
+	A	10.3.14.1
+
+$ORIGIN tau.lan.
+controller1	A	10.3.14.1
+ns1		A	10.3.14.1
+nas		A	10.3.14.10	;shared IP for failover
+nas1		A	10.3.14.11	;private IP for NAS server1
+nas2		A	10.3.14.12	;private IP for NAS server2

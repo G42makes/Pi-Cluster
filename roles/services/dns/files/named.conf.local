@@ -1,0 +1,13 @@
+include "/etc/bind/rndc.key";
+
+zone "tau.lan" {
+	type master;
+	file "/etc/bind/db.tau.lan";
+	allow-update { key rndc-key; };
+};
+
+zone "14.3.10.in-addr.arpa" {
+	type master;
+	file "/etc/bind/db.10.3.14";
+	allow-update { key rndc-key; };
+};

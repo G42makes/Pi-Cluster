@@ -1,0 +1,36 @@
+---
+#Install and configure DNS server, including integrations with DHCP
+# ref: https://blog.bigdinosaur.org/running-bind9-and-isc-dhcp/
+
+- name: Installing Bind9 DNS Server
+  apt: name={{ item }} state=installed
+  with_items:
+    - bind9
+    - dnsutils
+
+- name: Copying DNS Config Files
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/bind/{{ item }}"
+    owner: root
+    group: bind
+    mode: 0644
+  with_items:
+    - named.conf.options
+    - named.conf.local
+    - db.tau.lan
+    - db.10.3.14
+  notify: restart dns
+
+- name: Adding Local DNS Server to Local Resolvers file
+  lineinfile:
+    path: /etc/resolv.conf
+    regexp: '^nameserver 127\.0\.0\.1'
+    line: 'nameserver 127.0.0.1'
+    insertbefore: '^nameserver'
+- name: Updating DNS domain in Local Resolvers file
+  lineinfile:
+    path: /etc/resolv.conf
+    regexp: '^domain'
+    line: 'domain tau.lan'
+

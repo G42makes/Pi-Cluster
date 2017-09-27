@@ -7,5 +7,7 @@
     - networking/internal
     - networking/gateway
     - networking/hostname
+    - services/dns
     - services/dhcp
+
 
