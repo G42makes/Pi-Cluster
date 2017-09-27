@@ -1,0 +1,5 @@
+---
+#hostname change handler
+- name: restart hostname
+  command: /etc/init.d/hostname.sh start
+  

@@ -6,5 +6,6 @@
     - setup/node-controller
     - networking/internal
     - networking/gateway
+    - networking/hostname
     - services/dhcp
 

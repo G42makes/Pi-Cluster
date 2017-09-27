@@ -1,0 +1,20 @@
+---
+#Set the hostname on the local host
+# currently only used for the controller1 system
+
+- name: Updating /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    regexp: '^127\.0\.1\.1'
+    line: '127.0.1.1	controller1 controller1.tau.lan'
+  notify: restart hostname
+
+- name: Updating /etc/hostname
+  copy:
+    dest: /etc/hostname
+    content: "controller1\n"
+  notify: restart hostname
+
+- name: Using Builtin Hostname Task to finalize
+  hostname: 
+    name: controller1
