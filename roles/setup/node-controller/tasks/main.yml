@@ -11,3 +11,6 @@
     - vim
     - screen
 
+- name: Configuring TimeZone
+  timezone:
+    name: America/Toronto

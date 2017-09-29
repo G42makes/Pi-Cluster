@@ -9,5 +9,5 @@
     - networking/hostname
     - services/dns
     - services/dhcp
-
+    - services/ntp
 

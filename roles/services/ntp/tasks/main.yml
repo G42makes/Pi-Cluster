@@ -1,0 +1,16 @@
+---
+#Install and configure local system as an NTP time source, synced to time.nrc.ca
+
+- name: Installing NTP Server
+  apt: name={{ item }} state=installed
+  with_items:
+    - ntp
+
+- name: Copying NTP configuration
+  copy:
+    src: ntp.conf
+    dest: /etc/ntp.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart ntpd
